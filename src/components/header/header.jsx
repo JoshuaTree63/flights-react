@@ -31,7 +31,7 @@ function Header() {
   };
 
   const handleCloseNavMenu = (pageName) => {
-    navigate(`/${pageName.toLowerCase}`)
+    navigate(`/${pageName.toLowerCase()}`)
     setAnchorElNav(null);
   };
 
@@ -92,7 +92,7 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={()=>handleCloseNavMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}

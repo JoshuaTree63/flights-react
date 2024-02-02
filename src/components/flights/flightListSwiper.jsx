@@ -11,7 +11,7 @@ import './styles.css';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
-export default function FlightsList() {
+export default function FlightsListSwiper() {
     return (
       <>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
