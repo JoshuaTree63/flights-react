@@ -15,6 +15,7 @@ const FlightDetails = () =>{
             setFlight(response.data)
         }
         fetchData()
+        console.log(setFlight)
     }, [flightId])
 
     return(
