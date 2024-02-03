@@ -11,19 +11,30 @@ import { Stack } from "@mui/material";
 export default function  FlightsPage () {
 
     const navigate = useNavigate()
-    const [flights, setFlights] = useState([])
+    const [flights, setFlights] = useState({results:[]})
+
+    const fatchDate = async() => {
+        let urlToSend = urls.FLIGHTS_LIST_URL
+        if (flights.results.length >0) {
+            urlToSend = flights.next
+
+        }
+        try {
+            const response = await axios.get(urlToSend)
+            console.log(response)
+            // setFlights(response.data)
+            setFlights(
+                {...flights, 
+                next: response.data.next,
+                results: [...flights.results ,...response.data.results]}
+            )
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     useEffect(
-        ()=>{
-            const fatchDate = async() => {
-                try {
-                    const response = await axios.get(urls.FLIGHTS_LIST_URL)
-                    console.log(response)
-                    setFlights(response.data.results)
-                } catch (e) {
-                    console.log(e)
-                }
-            }
+        ()=>{            
             fatchDate()
         }
         ,[]
@@ -34,7 +45,7 @@ export default function  FlightsPage () {
         <FlightsSerach />
 
         <Stack direction={'row'}>
-            <FlightsList flights={flights}/>
+            <FlightsList flights={flights} loadMore = {fatchDate}/>
             <Outlet />
         </Stack>
 
