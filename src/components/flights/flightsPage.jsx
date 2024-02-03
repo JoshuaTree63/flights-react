@@ -17,12 +17,11 @@ export default function  FlightsPage () {
         let urlToSend = urls.FLIGHTS_LIST_URL
         if (flights.results.length >0) {
             urlToSend = flights.next
-
         }
+        
         try {
             const response = await axios.get(urlToSend)
             console.log(response)
-            // setFlights(response.data)
             setFlights(
                 {...flights, 
                 next: response.data.next,
