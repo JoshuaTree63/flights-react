@@ -20,11 +20,11 @@ const router = createBrowserRouter([
     [
       {
         path: '/',
-        element: <FlightsPage />
-      },
-      {
-        path: '/flights/:flightId',
-        element: <FlightDetails />
+        element: <FlightsPage />,
+        children:[{
+          path: '/flights/:flightId',
+          element: <FlightDetails />
+        }]
       },
       {
         path: '/orders',

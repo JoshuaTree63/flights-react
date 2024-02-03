@@ -3,8 +3,10 @@ import { useEffect, useState } from "react"
 import * as urls from "../../infra/urls"
 import FlightsSerach from "./flightSerach"
 import { Button } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import FlightsList from "./flightsList"
+import { Stack } from "@mui/material";
+
 
 export default function  FlightsPage () {
 
@@ -30,7 +32,11 @@ export default function  FlightsPage () {
         <>
         <h2>Flights page</h2>
         <FlightsSerach />
-        <FlightsList flights={flights}/>
+
+        <Stack direction={'row'}>
+            <FlightsList flights={flights}/>
+            <Outlet />
+        </Stack>
 
         <Button onClick={()=>{navigate('/orders')}}>Go to orders</Button>
         </>

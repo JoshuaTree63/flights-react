@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FLIGHT_DETAILS_URL } from "../../infra/urls";
+import { Stack } from "@mui/material";
 
 const FlightDetails = () =>{
 
@@ -18,14 +19,21 @@ const FlightDetails = () =>{
 
     return(
         <>
-        { flight &&       
-            <>
+         <>
+        {flight &&
+            <Stack direction={'column'}>
                 <p>{`Origin country: ${flight.origin_country}`}</p>
-                <p>{`Destantion Country: ${flight.dest_country}`}</p>
-                <p>{`Departure Time: ${flight.departure_dt}`}</p>
-                <p>{`Arrivel Time: ${flight.arrival_dt}`}</p>
-            </>
+
+                <br/>
+                <p>{`Destinaiton country: ${flight.dest_country}`}</p>
+                <br/>
+                <p>{`Departure: ${flight.departure_dt}`}</p>
+                <br/>
+                <p>{`Arrival: ${flight.arrival_dt}`}</p>
+                <br/>
+            </Stack>
         }
+        </>
         </>
     )
 }
