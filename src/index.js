@@ -8,6 +8,7 @@ import FlightsPage from './components/flights/flightsPage';
 import OrdersPage from './components/orders/ordersPage'; 
 import FlightDetails from './components/flights/flightsDetails';
 import LoginPage from './components/login/loginPage';
+import UserProvider from './context/userContext';
 
  
 
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router} />);
+root.render(
+  <UserProvider>
+    <RouterProvider router={router} />    
+  </UserProvider>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
