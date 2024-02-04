@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import FlightsPage from './components/flights/flightsPage';
 import OrdersPage from './components/orders/ordersPage'; 
 import FlightDetails from './components/flights/flightsDetails';
+import LoginPage from './components/login/loginPage';
 
  
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         element: <OrdersPage />
       }
     ]
+  },
+  {
+    path: '/login',
+    element: <LoginPage />
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

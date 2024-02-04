@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 
 const pages = ['Orders', 'Destinations', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login','Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
   const navigate = useNavigate() 
@@ -36,6 +36,7 @@ function Header() {
   };
 
   const handleCloseUserMenu = () => {
+    navigate('/login')
     setAnchorElUser(null);
   };
 
