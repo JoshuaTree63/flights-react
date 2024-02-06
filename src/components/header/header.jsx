@@ -20,9 +20,9 @@ const settings = ['Login','Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
 
-  const navigate = useNavigate() 
-  const user = React.useContext(UserContext)
-  const setUser = React.useContext(SetUserContext)
+  const navigate = useNavigate()
+    const user = React.useContext(UserContext)
+    const setUser = React.useContext(SetUserContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -30,22 +30,22 @@ function Header() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (pageName) => {
+
+  const navigateAndCloseMenu = (pageName) => {
     navigate(`/${pageName.toLowerCase()}`)
     setAnchorElNav(null);
   };
-
-  const handleCloseUserMenu = () => {
-    navigate('/login')
-    setAnchorElUser(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
   const navigateAndCloseUserMenu =(setting)=>{
-    if (settings === 'Logout') {
+    if (setting === 'Logout') {
       localStorage.clear('token')
       setUser({user: null})
     } else {
@@ -53,6 +53,11 @@ function Header() {
     }
     setAnchorElNav(null)
   }
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
 
   return (
     <AppBar position="static">
@@ -107,7 +112,7 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={()=>handleCloseNavMenu(page)}>
+                <MenuItem key={page} onClick={()=>navigateAndCloseMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
