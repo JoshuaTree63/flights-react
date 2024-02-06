@@ -13,12 +13,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { SetUserContext, UserContext } from '../../context/userContext';
 
 const pages = ['Orders', 'Destinations', 'Blog'];
 const settings = ['Login','Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
+
   const navigate = useNavigate() 
+  const user = React.useContext(UserContext)
+  const setUser = React.useContext(SetUserContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -39,6 +43,16 @@ function Header() {
     navigate('/login')
     setAnchorElUser(null);
   };
+
+  const navigateAndCloseUserMenu =(setting)=>{
+    if (settings === 'Logout') {
+      localStorage.clear('token')
+      setUser({user: null})
+    } else {
+      navigate(`/${setting.toLowerCase()}`)
+    }
+    setAnchorElNav(null)
+  }
 
   return (
     <AppBar position="static">
@@ -122,7 +136,7 @@ function Header() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={()=> handleCloseNavMenu(page)}
+                onClick={()=> handleCloseNavMenu( page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -133,7 +147,7 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.user?.email} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -153,7 +167,7 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={navigateAndCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
