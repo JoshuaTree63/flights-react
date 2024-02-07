@@ -1,4 +1,3 @@
-import { List } from "@mui/material"
 import FlightItem from "./flightItem"
 import InfiniteScroll from "react-infinite-scroller"
 

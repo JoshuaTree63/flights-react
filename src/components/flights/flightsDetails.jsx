@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { FLIGHT_DETAILS_URL } from "../../infra/urls";
-import { Stack } from "@mui/material";
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { FLIGHT_DETAILS_URL } from "../../infra/urls"
+import { Stack } from "@mui/material"
 
-const FlightDetails = () =>{
+const FlightDetails = () => {
 
     const {flightId} = useParams()
     const [flight, setFlight] = useState({})
@@ -12,15 +12,14 @@ const FlightDetails = () =>{
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`${FLIGHT_DETAILS_URL}/${flightId}`)
+            console.log('Floght details:', response)
             setFlight(response.data)
         }
         fetchData()
-        console.log(setFlight)
     }, [flightId])
 
     return(
         <>
-         <>
         {flight &&
             <Stack direction={'column'}>
                 <p>{`Origin country: ${flight.origin_country}`}</p>
@@ -35,8 +34,7 @@ const FlightDetails = () =>{
             </Stack>
         }
         </>
-        </>
     )
-}
 
-export default FlightDetails;
+}
+export default FlightDetails

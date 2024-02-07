@@ -11,16 +11,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import AirlinesIcon from '@mui/icons-material/Airlines';
 import { SetUserContext, UserContext } from '../../context/userContext';
 
 const pages = ['Orders', 'Destinations', 'Blog'];
-const settings = ['Login','Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login', 'Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     const user = React.useContext(UserContext)
     const setUser = React.useContext(SetUserContext)
 
@@ -30,7 +30,6 @@ function Header() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -39,31 +38,30 @@ function Header() {
   const navigateAndCloseMenu = (pageName) => {
     navigate(`/${pageName.toLowerCase()}`)
     setAnchorElNav(null);
-  };
+  }
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const navigateAndCloseUserMenu =(setting)=>{
+  const navigateAndCloseUserMenu = (setting) => {
     if (setting === 'Logout') {
       localStorage.clear('token')
       setUser({user: null})
     } else {
       navigate(`/${setting.toLowerCase()}`)
     }
-    setAnchorElNav(null)
+    setAnchorElNav(null);
   }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AirlinesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -72,14 +70,14 @@ function Header() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              // letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Best Airlines
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -112,13 +110,13 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={()=>navigateAndCloseMenu(page)}>
+                <MenuItem key={page} onClick={() => navigateAndCloseMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AirlinesIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -128,20 +126,20 @@ function Header() {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              // letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Best Airlines
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={()=> handleCloseNavMenu( page)}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -152,7 +150,7 @@ function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user.user?.email} src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.user?.first_name} src={user.user?.img_url} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -172,10 +170,11 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={navigateAndCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => navigateAndCloseUserMenu(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))
+              }
             </Menu>
           </Box>
         </Toolbar>
