@@ -29,18 +29,25 @@ export default function FlightsSerach({setFlights}) {
     return (
      
         <Container 
-            component={'form'}
-            sx={{marginTop: '1em', display: 'flex'}}>
+        component={'form'} 
+        onSubmit={(e) => {e.preventDefault()}}
+        sx={{marginTop: '1em', display: 'flex'}}>
             
-            <Autocomplete
+        <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={[]}
+            options={originCityList}
             sx={{ width: 300 }}
-            renderInput={handleRenderInput}/> 
-            <Button onClick={handleSearch}>Search</Button>     
+            renderInput={handleRenderInput}
+            value={selectedCity}
+            onChange={(e, newValue) => {
 
-        </Container>
+                setSelectedCity(newValue)
+            }}
+            />
+       
+        <Button onClick={handleSearch}>Search</Button>
+    </Container>
         
         
         
