@@ -21,7 +21,7 @@ export default function FligthItem({flight}) {
                     display:'flex', flexDirection:'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    paddingX: '2em'}}>
+                    paddingX: '1em'}}>
                 <Typography>{`${flight.origin_city} => ${flight.dest_city}`}</Typography>
                 <IconButton>
                     <ArrowCircleRightIcon onClick={handleClick} color="primary"
