@@ -1,17 +1,26 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import * as urls from "../../infra/urls"
 import FlightsSerach from "./flightSerach"
-import { Button } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import { Outlet, useNavigate } from "react-router-dom"
 import FlightsList from "./flightsList"
 import { Stack } from "@mui/material";
+import NewFlightModal from "./newFlightModal"
+import AddIcon from '@mui/icons-material/Add'
+import Fab from '@mui/material/Fab';
+import { UserContext } from "../../context/userContext"
+
 
 
 export default function  FlightsPage () {
 
     const navigate = useNavigate()
+    const user = useContext(UserContext) 
+
     const [flights, setFlights] = useState({results:[]})
+
+    const [openAddFlightModal, setOpenAddFlightModal] = useState(false)
 
     const fatchDate = async() => {
         let urlToSend = urls.FLIGHTS_LIST_URL
@@ -39,17 +48,31 @@ export default function  FlightsPage () {
         ,[]
     )    
     return(
-        <>
-        <h2>Flights page</h2>
-        <FlightsSerach />
+      
+        <Box sx={{overflow: 'hidden'}}>  
+ 
+        <FlightsSerach setFlights={setFlights}/>
 
-        <Stack direction={'row'}>
+        <Stack direction={'row'} sx={{width:'100%'}}>
             <FlightsList flights={flights} loadMore = {fatchDate}/>
             <Outlet />
         </Stack>
 
         <Button onClick={()=>{navigate('/orders')}}>Go to orders</Button>
-        </>
+        
+        {user.user?.is_staff &&
+            <>
+            <Fab color="secondary" aria-label="add" 
+                sx={{position: 'absolute',bottom: 16, right: 16,}}
+                onClick={() => setOpenAddFlightModal(true)}>
+                <AddIcon />
+            </Fab>
+
+            <NewFlightModal open={openAddFlightModal} setOpen={setOpenAddFlightModal}/>
+            </>
+        }
+
+        </Box>
     )
 
 }

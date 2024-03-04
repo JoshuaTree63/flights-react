@@ -8,7 +8,6 @@ export default function FligthItem({flight}) {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        console.log('blabal')
         navigate(`/flights/${flight.id}`)
     }
 

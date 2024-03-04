@@ -25,8 +25,7 @@ export default function FlightsSerach({setFlights}) {
             console.log(selectedCity)    
             const response = await axios.get(FLIGHTS_LIST_URL, {params:{origin_city: selectedCity}})
             setFlights(response.data)
-        }
- 
+        } 
 
     return (
      
