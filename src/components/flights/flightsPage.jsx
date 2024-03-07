@@ -10,13 +10,15 @@ import NewFlightModal from "./newFlightModal"
 import AddIcon from '@mui/icons-material/Add'
 import Fab from '@mui/material/Fab';
 import { UserContext } from "../../context/userContext"
+import { setNotificationContext } from "../../context/notificationContext"
 
 
 
 export default function  FlightsPage () {
 
     const navigate = useNavigate()
-    const user = useContext(UserContext) 
+    const user = useContext(UserContext)
+    const setNotification = useContext(setNotificationContext) 
 
     const [flights, setFlights] = useState({results:[]})
 
@@ -58,7 +60,7 @@ export default function  FlightsPage () {
             <Outlet />
         </Stack>
 
-        <Button onClick={()=>{navigate('/orders')}}>Go to orders</Button>
+        <Button onClick={()=> setNotification({open: true, msg: "going to orders"})}>Go to orders</Button>
         
         {user.user?.is_staff &&
             <>

@@ -12,12 +12,14 @@ import axios from "axios";
 import { LOGIN_URL, ME_URL } from "../../infra/urls";
 import { SetUserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { setNotificationContext } from "../../context/notificationContext";
 
 
 export default function LoginPage() {
 
     const navigate = useNavigate()
     const setUser = useContext(SetUserContext)
+    const setNotification = useContext(setNotificationContext)
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -42,6 +44,7 @@ export default function LoginPage() {
       
     } catch (e) {
       console.log(e)
+      setNotification({open: true, msg: e.response.data.results})
     }
     
 

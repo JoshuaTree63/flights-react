@@ -5,6 +5,8 @@ import { ME_URL } from './infra/urls';
 import { useContext, useEffect } from 'react';
 import { SetUserContext } from './context/userContext';
 import axios from 'axios';
+import { Box} from '@mui/material';
+import { Notification } from './notification/notification';
  
 
 
@@ -31,8 +33,13 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet />
+      <Box paddingX={'24px'} sx={{maxWidth: 'sx'}}>
+        <Outlet/>
+      </Box>
+
+      <Notification /> 
     </>
+    
 
   )
 }
