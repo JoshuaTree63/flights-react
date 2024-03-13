@@ -10,6 +10,9 @@ import FlightDetails from './components/flights/flightsDetails';
 import LoginPage from './components/login/loginPage';
 import UserProvider from './context/userContext';
 import { Notification } from './notification/notification';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { orange, red } from '@mui/material/colors';
+import { dark } from '@mui/material/styles/createPalette';
 
  
 
@@ -40,13 +43,36 @@ const router = createBrowserRouter([
     element: <LoginPage />
   }
 ])
+
+const myTheme ={
+ 
+  palette: {
+    mode: 'dark'
+  //   primary: {
+  //     main: orange[500],
+  //   },
+  //   secondary: {
+  //     main: '#f50057',
+  //   },
+  // },
+  // typography: {
+  //   fontSize: 12
+  },
+}
+
+const theme = createTheme(myTheme)
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <ThemeProvider theme={theme}> 
+  <CssBaseline />
   <Notification>
     <UserProvider>
       <RouterProvider router={router} />    
     </UserProvider>
   </Notification>
+  </ThemeProvider>
+
   
 );
 

@@ -1,4 +1,4 @@
-import { Snackbar } from "@mui/material"
+import { Alert, Snackbar } from "@mui/material"
 import { useState } from "react"
 import { setNotificationContext } from "../context/notificationContext"
 
@@ -29,9 +29,12 @@ export const Notification = ({children})=>{
         open={notification.open}
         autoHideDuration={6000}
         onClose={hendelClose}
-        message={notification.msg}
+        // message={notification.msg}
         // action={action}
         />
+            <Alert onClose={hendelClose} severity={notification.severity} sx={{width: '100%'}}>
+                {notification.msg}
+            </Alert>
         </>
         
     )

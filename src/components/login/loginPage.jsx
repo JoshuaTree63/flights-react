@@ -13,6 +13,7 @@ import { LOGIN_URL, ME_URL } from "../../infra/urls";
 import { SetUserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { setNotificationContext } from "../../context/notificationContext";
+import MyBox from "../common/myBox";
 
 
 export default function LoginPage() {
@@ -41,10 +42,14 @@ export default function LoginPage() {
           user: {...meResponse.data}
       })
       navigate('/')
+      setNotification({
+        open: true, 
+        msg: "You have successfully logged in ",
+        severity: 'success' })
       
     } catch (e) {
       console.log(e)
-      setNotification({open: true, msg: e.response.data.results})
+      setNotification({open: true, msg: e.response.data.detail, severity: 'error'})
     }
     
 
@@ -52,7 +57,7 @@ export default function LoginPage() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box>
+      <MyBox>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -107,7 +112,7 @@ export default function LoginPage() {
           </Grid>     
 
         </Box>
-      </Box>
+      </MyBox>
     </Container>
   );
 }

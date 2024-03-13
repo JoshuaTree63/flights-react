@@ -60,7 +60,7 @@ export default function  FlightsPage () {
             <Outlet />
         </Stack>
 
-        <Button onClick={()=> setNotification({open: true, msg: "going to orders"})}>Go to orders</Button>
+        <Button color='secondary' onClick={()=> setNotification({open: true, msg: "going to orders"})}>Go to orders</Button>
         
         {user.user?.is_staff &&
             <>

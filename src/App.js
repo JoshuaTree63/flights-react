@@ -5,10 +5,10 @@ import { ME_URL } from './infra/urls';
 import { useContext, useEffect } from 'react';
 import { SetUserContext } from './context/userContext';
 import axios from 'axios';
-import { Box} from '@mui/material';
+import { Box, CssBaseline, createTheme} from '@mui/material';
 import { Notification } from './notification/notification';
+import { ThemeProvider } from '@emotion/react';
  
-
 
 function App() {
 
@@ -31,6 +31,7 @@ function App() {
     }, []
   )
   return (
+   
     <>
       <Header />
       <Box paddingX={'24px'} sx={{maxWidth: 'sx'}}>
