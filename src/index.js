@@ -11,8 +11,7 @@ import LoginPage from './components/login/loginPage';
 import UserProvider from './context/userContext';
 import { Notification } from './notification/notification';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import { orange, red } from '@mui/material/colors';
-import { dark } from '@mui/material/styles/createPalette';
+import { green, lime} from '@mui/material/colors';
 
  
 
@@ -47,16 +46,16 @@ const router = createBrowserRouter([
 const myTheme ={
  
   palette: {
-    mode: 'dark'
-  //   primary: {
-  //     main: orange[500],
-  //   },
-  //   secondary: {
-  //     main: '#f50057',
-  //   },
-  // },
-  // typography: {
-  //   fontSize: 12
+    // mode: 'dark'
+    primary: {
+      main: lime[500],
+    },
+    secondary: {
+      main: green[600],
+    },
+  },
+  typography: {
+    fontSize: 12
   },
 }
 
