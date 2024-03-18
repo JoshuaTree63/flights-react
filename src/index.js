@@ -12,11 +12,9 @@ import UserProvider from './context/userContext';
 import { Notification } from './notification/notification';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { green, lime} from '@mui/material/colors';
+import axios from 'axios';
 
  
-
-
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -42,6 +40,27 @@ const router = createBrowserRouter([
     element: <LoginPage />
   }
 ])
+
+axios.interceptors.request.use(
+  (config) =>{
+
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  }
+)
+
+axios.interceptors.response.use(
+  (response) =>{
+    if (response.status === 500) {
+      response.data['isServerError'] = true      
+    }
+    response.data['isServerError'] = false 
+    return response
+  }
+)
 
 const myTheme ={
  

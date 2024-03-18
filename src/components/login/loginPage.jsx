@@ -51,8 +51,6 @@ export default function LoginPage() {
       console.log(e)
       setNotification({open: true, msg: e.response.data.detail, severity: 'error'})
     }
-    
-
   };
 
   return (
