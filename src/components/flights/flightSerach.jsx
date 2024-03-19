@@ -38,7 +38,7 @@ export default function FlightsSerach({setFlights}) {
                 disablePortal
                 id="combo-box-demo"
                 options={originCityList}
-                sx={{ width: 300 }}
+                sx={{ width: 242 }}
                 renderInput={handleRenderInput}
                 value={selectedCity}
                 onChange={(e, newValue) => {

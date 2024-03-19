@@ -10,11 +10,11 @@ import FlightDetails from './components/flights/flightsDetails';
 import LoginPage from './components/login/loginPage';
 import UserProvider from './context/userContext';
 import { Notification } from './notification/notification';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme} from '@mui/material';
 import { green, lime} from '@mui/material/colors';
 import axios from 'axios';
 
- 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -62,16 +62,17 @@ axios.interceptors.response.use(
   }
 )
 
+
 const myTheme ={
  
-  palette: {
-    // mode: 'dark'
+  palette: {    
     primary: {
       main: lime[500],
     },
     secondary: {
       main: green[600],
     },
+    
   },
   typography: {
     fontSize: 12
@@ -80,18 +81,17 @@ const myTheme ={
 
 const theme = createTheme(myTheme)
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ThemeProvider theme={theme}> 
-  <CssBaseline />
-  <Notification>
-    <UserProvider>
-      <RouterProvider router={router} />    
-    </UserProvider>
-  </Notification>
-  </ThemeProvider>
-
-  
+  <ThemeProvider theme={theme}>   
+    <CssBaseline />
+    <Notification>
+      <UserProvider>
+        <RouterProvider router={router} />    
+      </UserProvider>
+    </Notification> 
+  </ThemeProvider>  
 );
 
 // If you want to start measuring performance in your app, pass a function
