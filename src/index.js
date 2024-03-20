@@ -13,6 +13,7 @@ import { Notification } from './notification/notification';
 import { CssBaseline, ThemeProvider, createTheme} from '@mui/material';
 import { green, lime} from '@mui/material/colors';
 import axios from 'axios';
+import ProfliePage from './components/profile/profilePage';
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/orders',
         element: <OrdersPage />
+      },
+      {
+        path: '/profile',
+        element: <ProfliePage />
       }
     ]
   },
