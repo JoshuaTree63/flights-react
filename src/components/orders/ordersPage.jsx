@@ -1,13 +1,25 @@
-import { Box, Grid, Paper } from "@mui/material";
+import {  Button } from "@mui/material";
+import axios from "axios";
+import { FILE_DOWNLOAD_URL } from "../../infra/urls";
 
-export default function OrdersPage() {
+var fileDownload = require('js-file-download');
+
+export default function OrderPage () {
+
+    const downloadFile = async () => {
+        const response = await axios.get(FILE_DOWNLOAD_URL, {responseType: ' blob'})
+        console.log(response)
+        fileDownload(response.data);
+    }
+
+
     return(
+
         <>
         
         <h2>Orders page</h2>
 
-
-        <Box sx={{mt: '20px'}}>
+        {/* <Box sx={{mt: '20px'}}>
             <Grid container spacing={5} rowSpacing={1} columnSpacing={5} justifyContent={'center'} justifyItems={'center'}>
               
                 <Grid item lg={8} md={6} sx={12} justifyContent={'center'} justifySelf={'center'} alignItems={'center'} >
@@ -34,7 +46,9 @@ export default function OrdersPage() {
                     </Paper>
                 </Grid>
             </Grid>
-        </Box>
+        </Box> */}
+
+        <Button onClick={downloadFile}>Test Download file</Button>
         </>
     )
 }

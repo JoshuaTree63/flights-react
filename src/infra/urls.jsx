@@ -7,5 +7,6 @@ export const ORIGIN_CITIES_URL = `${BASE_URL}/api/flights/origin_cities`
 export const LOGIN_URL = `${BASE_URL}/api/users/tokens`
 export const ME_URL = `${BASE_URL}/api/users/me`
 
+export const UPLOAD_PROFILE_IMG_URL = `${BASE_URL}/users/profile/img`
 
-
+export const FILE_DOWNLOAD_URL = `${BASE_URL}/api/users/download`
